@@ -98,8 +98,6 @@ class Camera:
 
             if (thresh.sum() > 100):
                 print("movement detected")
-                current_time = str(datetime.datetime.now())[11:13] + "-" + str(datetime.datetime.now())[14:16] + '-' + str(datetime.datetime.now())[17:19] + ':' + str(datetime.datetime.now())[20:23]
-                print(current_time)
                 self.send_detection_alert()
             else:
                 pass

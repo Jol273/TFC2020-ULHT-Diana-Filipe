@@ -11,6 +11,7 @@ stored_data = json.loads(file.read())
 video_output_folder_json = stored_data["video_output_folder"]
 record_seconds_after_movement_json = stored_data["record_seconds_after_movement"]
 max_recording_time_json = stored_data["max_recording_time"]
+device_id = stored_data["device_id"]
 server_ip_json = stored_data["server_ip"]
 camera_ip_json = stored_data["camera_ip"]
 file.close()
@@ -42,7 +43,7 @@ class Camera:
         current_time = str(datetime.datetime.now())[11:13]+"-"+str(datetime.datetime.now())[14:16]+'-'+str(datetime.datetime.now())[17:19]
         output_filepath = os.path.join(self.video_output_folder, current_time+".mp4")
 
-        proc = subprocess.Popen(['ffmpeg', '-i', f'http://{self.username}:{self.password}@localhost:8000/delayed_stream.mjpg', '-an', '-vcodec', 'copy', f"{output_filepath}"], stdin=subprocess.PIPE)
+        proc = subprocess.Popen(['ffmpeg', '-i', f'http://{self.username}:{self.password}@localhost:8000/delayed_stream.mjpg', '-f','alsa' ,'-i',f"plughw:"+device_id,'-ac','1', '-b:a', '128k', '-ar', '44100' , '-vcodec', 'copy', f"{output_filepath}"], stdin=subprocess.PIPE)
         # libx262, but there was something wrong with my ffmpeg so this didn't work for me.
         #proc = subprocess.Popen(['ffmpeg', '-i', f'http://{self.username}:{self.password}@localhost:8000/delayed_stream.mjpg', '-an', '-pix_fmt', 'yuv420p', '-b:v', '4000k', '-c:v', 'libx264', f"{output_filepath}"], stdin=subprocess.PIPE)
         threading.Thread(target=self.start_countdown, args=(proc,output_filepath,), daemon=True).start()

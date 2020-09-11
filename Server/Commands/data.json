@@ -1,9 +1,12 @@
 {
-"username" : "pi","password" : "picamera",
+"username" : "pi",
+"password" : "picamera",
 
-"cameraIP": "192.168.1.11", "localIP": "192.168.1.26",
+"cameraIP": "192.168.1.8", 
+"localIP": "192.168.1.7",
 
-"max_storage": 25, "video_output_folder":"D:/ANO3/TFC/TFC_Server/Recordings/Camera2",
+"max_storage": 25, 
+"video_output_folder":"D:/ANO3/TFC/TFC_Server/Recordings/Camera1",
 
 "motion_sensitivity": 10
 } 

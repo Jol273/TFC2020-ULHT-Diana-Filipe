@@ -61,7 +61,6 @@ def recvfile(s):
         try:
             time.sleep(3)
             convert_to_libx264(filepath)
-            print(current_time + ':' + str(datetime.datetime.now())[20:23])
         except Exception as e:
             print(str(e))
             os.rename(filepath, filepath.replace("MJEPG.mp4", ".mp4"))
@@ -75,7 +74,7 @@ def recvfile(s):
 def convert_to_libx264(filepath):
     print("converting {}...".format(filepath))
     #ffmpeg -i filepath -> buscar ficheiro
-    proc = subprocess.call( ['ffmpeg', '-i', f'{filepath}', '-pix_fmt', 'yuv420p', '-b:v', '4000k','-c:v', 'libx264', f"{filepath.replace ('MJPEG.mp4','.mp4')}", '-an'])
+    proc = subprocess.call( ['ffmpeg', '-i', f'{filepath}', '-pix_fmt', 'yuv420p', '-b:v', '4000k','-c:v', 'libx264', f"{filepath.replace ('MJPEG.mp4','.mp4')}"])
     time.sleep(3)
     os.remove(filepath)
     print("conversion complete")

@@ -3,8 +3,9 @@
 "video_output_folder":"/home/pi/Project/recordings",
 "record_seconds_after_movement": 5,
 "max_recording_time": 300,
-"server_ip":"192.168.1.26",
-"camera_ip":"192.168.1.11",
+"server_ip":"192.168.1.7",
+"camera_ip":"192.168.1.8",
+"device_id":"2,0",
 "resolution_x":1280,
 "resolution_y":720,
 "frame_rate":30
